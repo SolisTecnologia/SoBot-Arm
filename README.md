@@ -38,7 +38,7 @@ ___
 Procedure for installing the packages required for the Dobot Magician Lite robotic arm library to work.  
 
 ```
-•sudo date MMDDHHMMYYYY
+• sudo date MMDDHHMMYYYY
     The data are:
     MM = Month
     DD = Day
@@ -46,11 +46,11 @@ Procedure for installing the packages required for the Dobot Magician Lite robot
     MM = Minute
     YYYY = Year (with 4 digits)
 
-•sudo apt-get update
+• sudo apt-get update
 
-•sudo apt-get upgrade -y
+• sudo apt-get upgrade -y
 
-•sudo apt-get install -y libqt5serialport5 libqt5serialport5-dev
+• sudo apt-get install -y libqt5serialport5 libqt5serialport5-dev
 
 ```
 The “sudo date” command updates the Raspberry time so that the update and upgrade commands can be executed correctly.  
@@ -79,6 +79,57 @@ The program executes movements according to the defined states to move the SoBot
 ___
 
 * #### MAIN FUNCTION
+
+1. The algorithm identifies and connects to serial devices.  
+~~~python
+# Serial connection of the SoBot power and control board
+usb_SoBot = serial.Serial()
+serial_SoBot = serial_device_finder(Desc_SoBot_serial)
+
+# Serial connection to the Magician Lite Arm
+usb_Dobot = [0]
+api = dType.load()
+serial_Dobot = serial_device_finder(Desc_Dobot_serial)
+~~~
+
+2. Executes thread to monitor commands received in real time.  
+~~~python
+# Thread to monitor the Sobot USB serial port
+T_read_serial = threading.Thread(target=Read_Serial, daemon=True)
+T_read_serial.start()
+~~~
+
+3. Configures the SoBot to send feedback commands for its movement.  
+~~~python
+# SoBot Initial Settings
+usb_SoBot.write(b"CR1")
+usb_SoBot.write(b"MT0 E1")
+usb_SoBot.write(b"LT CR0")
+usb_SoBot.write(b"BZ CR0")
+usb_SoBot.write(b"LT E1 RD0 GR0 BL100")
+~~~
+
+4. Sends configuration and control commands to the robotic arm.  
+~~~python
+dType.SetQueuedCmdClear(api)
+
+MagicianIndexGet = dType.SetEndEffectorSuctionCup(api, False, True, isQueued=0)     # Disable Suction Command
+
+#Configurações de Movimento
+dType.SetHOMEParams(api, 240, 0, 150, 0, isQueued = 1)                # Sets the default position of the Dobot Magicia
+dType.SetPTPJointParams(api, 80, 80, 80, 80, 80, 80, 80, 80, isQueued = 1)  # Sets the joint parameters
+dType.SetPTPCommonParams(api, 100, 100, isQueued = 1)                       # Defines the velocity ratio and acceleration ratio in PTP mode
+dType.SetPTPCoordinateParams(api, 200, 200, 400, 200, isQueued = 1)         # Set the velocity and acceleration of the Cartesian coordinate axis en PTP mode
+                                                                            # (api, xyzVelocity, rVelocity, xyzAcceleration, rAcceleration, isQueued)
+
+dType.SetHOMECmd(api, temp = 0, isQueued = 1)       # Command to go to home position
+
+MagicianIndex = dType.SetPTPCmd(api, 2, 225, 180, 20, 0, isQueued = 1)[0]   # PTP mode = 2 - Set straight line path between two points
+                                                                            # Coordinate parameters in PTP mode (x,y,z,r)
+                                                                            # set to Cartesian coordinate
+~~~
+
+5. Within a looping programming, it uses the state machine concept to manage the flow of tasks by moving the SoBot and robotic arm in an orderly and synchronized manner until all tasks are completed.  
 
 
 ___
