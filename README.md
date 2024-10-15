@@ -38,7 +38,7 @@ ___
 Procedure for installing the packages required for the Dobot Magician Lite robotic arm library to work.  
 
 ```
-•	sudo date MMDDHHMMYYYY
+•sudo date MMDDHHMMYYYY
     The data are:
     MM = Month
     DD = Day
@@ -46,11 +46,11 @@ Procedure for installing the packages required for the Dobot Magician Lite robot
     MM = Minute
     YYYY = Year (with 4 digits)
 
-•	sudo apt-get update
+•sudo apt-get update
 
-•	sudo apt-get upgrade -y
+•sudo apt-get upgrade -y
 
-•	sudo apt-get install -y libqt5serialport5 libqt5serialport5-dev
+•sudo apt-get install -y libqt5serialport5 libqt5serialport5-dev
 
 ```
 The “sudo date” command updates the Raspberry time so that the update and upgrade commands can be executed correctly.  
