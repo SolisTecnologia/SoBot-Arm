@@ -71,6 +71,11 @@ import DobotDllType as dType
 * **Serial:** For serial communication between the SoBot and the Raspberry.  
 * **Threading:** Library to perform operations in parallel.  
 * **DobotDllType:** Library for controlling Dobot's robotic arm.  
+
+For more information about the robotic arm, please see the following links:  
+[DOWNLOAD CENTER – DOBOT MAGICIAN LITE](https://www.dobot-robots.com/service/download-center?keyword=&products%5B%5D=315)  
+[DOWNLOAD CENTER – DOBOT MAGICIAN](https://www.dobot-robots.com/service/download-center?keyword=&products%5B%5D=316)  
+[Dobot Magician with Python – Starter Guide](https://github.com/SERLatBTH/StarterGuide-Dobot-Magician-with-Python)
 ___
 
 ### Code Description
@@ -136,7 +141,7 @@ ___
 
 * #### AUXILIARY FUNCTIONS
 
-*1. Serial Device Finder*
+1. Serial Device Finder*
 ~~~python
 """
 Function to find the serial port that the SoBot board is connected to
@@ -147,7 +152,7 @@ def serial_device_finder (name_device):
 This function finds the serial port that the SoBot device is connected to by comparing the device name with the descriptions of the ports available in the system. 
 ___
 
-*2. Read Seria USB*
+2. Read Seria USB*
 ~~~python
 """
 Function to read commands received via USB serial port from SoBot
@@ -156,7 +161,6 @@ def Read_Serial():
 ~~~
 
 The Read_SerialUSB function is responsible for reading data received from the serial port sent by SoBot. 
-
 
 
 ___
