@@ -85,9 +85,8 @@ def Read_Serial():
         Main Function
 ###################################
 '''
-# Conexão serial da placa de potência e controle do SoBot
+# Serial connection of the SoBot power and control board
 usb_SoBot = serial.Serial()
-
 serial_SoBot = serial_device_finder(Desc_SoBot_serial)
 
 if serial_SoBot :
@@ -98,7 +97,7 @@ if serial_SoBot :
 else:
     print("No device 0 was connected.")
 
-# Conexão serial com o braço Magician Lite
+# Serial connection to the Magician Lite Arm
 usb_Dobot = [0]
 api = dType.load()
 serial_Dobot = serial_device_finder(Desc_Dobot_serial)
