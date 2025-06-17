@@ -450,22 +450,40 @@ DobotCommunicate = enum(
     DobotCommunicate_Timeout=2)
 
 ##################  API func   ##################
-
 def load():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    file_name = "/libDobotDll.so"
-    file_path = current_dir + file_name
-    print(file_path)
+    try:
+        print("Executing 32 bits")
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_name = "/files/libDobotDll32.so"
+        file_path = current_dir + file_name
+        print(file_path)
 
-    if platform.system() == "Windows":
-        return CDLL("DobotDll.dll",  RTLD_GLOBAL) 
-    elif platform.system() == "Darwin" :
-        return CDLL("libDobotDll.dylib",  RTLD_GLOBAL)
-    else:
-#        return cdll.loadLibrary("./libDobotDll.so")
-        #return CDLL("./libDobotDll.so")
-        return CDLL(file_path)
-    
+        if platform.system() == "Windows":
+            return CDLL("DobotDll.dll",  RTLD_GLOBAL) 
+        elif platform.system() == "Darwin" :
+            return CDLL("libDobotDll.dylib",  RTLD_GLOBAL)
+        else:
+            #return cdll.loadLibrary("./libDobotDll.so")
+            #return CDLL("./libDobotDll.so")
+            return CDLL(file_path)
+        
+    except:
+        print("Executing 64 bits")
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_name = "/files/libDobotDll64.so"
+        file_path = current_dir + file_name
+        print(file_path)
+
+        if platform.system() == "Windows":
+            return CDLL("DobotDll.dll",  RTLD_GLOBAL) 
+        elif platform.system() == "Darwin" :
+            return CDLL("libDobotDll.dylib",  RTLD_GLOBAL)
+        else:
+            #return cdll.loadLibrary("./libDobotDll.so")
+            #return CDLL("./libDobotDll.so")
+            return CDLL(file_path)
+
+
 def dSleep(ms):
     time.sleep(ms / 1000)
     

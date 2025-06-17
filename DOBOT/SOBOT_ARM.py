@@ -158,13 +158,13 @@ if (usb_Dobot == dType.DobotConnect.DobotConnect_NoError):
             # Simulates arm movement using suction to move an object
                                             #     (   x,    y,   z,  r)
             MagicianIndex = dType.SetPTPCmd(api, 2, 250,  100, 150, 0, isQueued = 1)[0]
-            MagicianIndexGet = dType.SetEndEffectorSuctionCup(api, True, True, isQueued=0)      # Enable Suction Command
+            MagicianIndexGet = dType.SetEndEffectorSuctionCup(api, True, True, isQueued=1)      # Enable Suction Command
             MagicianIndex = dType.SetPTPCmd(api, 2, 260,  100,  80, 0, isQueued = 1)[0]
             # Collect the object
             MagicianIndex = dType.SetPTPCmd(api, 2, 240,    0, 150, 0, isQueued = 1)[0]
             MagicianIndex = dType.SetPTPCmd(api, 2, 250, -100, 150, 0, isQueued = 1)[0]
             MagicianIndex = dType.SetPTPCmd(api, 2, 260, -100,  80, 0, isQueued = 1)[0]
-            MagicianIndexGet = dType.SetEndEffectorSuctionCup(api, False, True, isQueued=0)     # Disable Suction Command
+            MagicianIndexGet = dType.SetEndEffectorSuctionCup(api, False, True, isQueued=1)     # Disable Suction Command
             # Place the object
             MagicianIndex = dType.SetPTPCmd(api, 2, 260, -100, 120, 0, isQueued = 1)[0]
             MagicianIndex = dType.SetPTPCmd(api, 2, 240,    0, 150, 0, isQueued = 1)[0]
