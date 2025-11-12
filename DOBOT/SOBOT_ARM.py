@@ -187,6 +187,7 @@ if (usb_Dobot == dType.DobotConnect.DobotConnect_NoError):
 
 #Disconnect Dobot
 dType.DisconnectDobot(api)
+usb_SoBot.write(b"CR0")             
 usb_SoBot.write(b"MT0 E0")
 usb_SoBot.write(b"LT E0")
 
