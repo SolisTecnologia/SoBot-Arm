@@ -87,7 +87,8 @@ import DobotDllType as dType
 For more information about the robotic arm, please see the following links:  
 [DOWNLOAD CENTER – DOBOT MAGICIAN LITE](https://www.dobot-robots.com/service/download-center?keyword=&products%5B%5D=315)  
 [DOWNLOAD CENTER – DOBOT MAGICIAN](https://www.dobot-robots.com/service/download-center?keyword=&products%5B%5D=316)  
-[Dobot Magician with Python – Starter Guide](https://github.com/SERLatBTH/StarterGuide-Dobot-Magician-with-Python)
+[Dobot Magician with Python – Starter Guide](https://github.com/SERLatBTH/StarterGuide-Dobot-Magician-with-Python)  
+[Dobot Magician Lite - User Guide](https://github.com/SolisTecnologia/SoBot-Arm/blob/master/DOBOT/Dobot%20Magician%20Lite%20User%20Guide%20(DobotLab-based).pdf)
 ___
 
 ### Code Description
